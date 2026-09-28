@@ -255,6 +255,135 @@ footer p {
         margin-left: 0;
     }
 
+   /* ========================================
+   RASHTRA SETU - PROFESSIONAL HEADER
+======================================== */
+
+.site-header {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 14px 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 30px;
+}
+
+
+/* ========================================
+   LOGO
+======================================== */
+
+.site-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.logo-icon {
+    font-size: 30px;
+    line-height: 1;
+}
+
+.logo-text {
+    font-size: 25px;
+    font-weight: 700;
+    color: #123b73;
+}
+
+.logo-text strong {
+    color: #0b5ed7;
+}
+
+
+/* ========================================
+   NAVIGATION
+======================================== */
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.main-nav a {
+    position: relative;
+
+    padding: 9px 12px;
+
+    text-decoration: none;
+
+    color: #333333;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    border-radius: 6px;
+
+    transition:
+        color 0.2s ease,
+        background 0.2s ease;
+}
+
+.main-nav a:hover {
+    color: #0b5ed7;
+    background: #f1f6ff;
+}
+
+.main-nav a.active {
+    color: #0b5ed7;
+}
+
+
+/* ========================================
+   MOBILE HEADER
+======================================== */
+
+@media (max-width: 768px) {
+
+    .header-container {
+        flex-direction: column;
+        gap: 12px;
+
+        padding: 14px 15px;
+    }
+
+    .site-logo {
+        justify-content: center;
+    }
+
+    .logo-text {
+        font-size: 23px;
+    }
+
+    .main-nav {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .main-nav a {
+        font-size: 13px;
+        padding: 8px 9px;
+    }
+
+}
+
     main > section:not(:first-child) {
         padding: 22px;
     }
