@@ -606,3 +606,10 @@ main form button:hover {
   background: #123b73;
 }
 
+
+
+/* RashtraSetu: Justify paragraphs on desktop and mobile */
+main p {
+  text-align: justify;
+  text-justify: inter-word;
+}
