@@ -1,6 +1,5 @@
 
 document.addEventListener("DOMContentLoaded", async function () {
-
     async function loadComponent(selector, file) {
         const container = document.querySelector(selector);
 
@@ -18,7 +17,6 @@ document.addEventListener("DOMContentLoaded", async function () {
             }
 
             container.innerHTML = await response.text();
-
         } catch (error) {
             console.error(error);
         }
@@ -28,5 +26,4 @@ document.addEventListener("DOMContentLoaded", async function () {
         loadComponent("#site-header", "/components/header.html"),
         loadComponent("#site-footer", "/components/footer.html")
     ]);
-
 });
