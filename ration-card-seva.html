@@ -385,6 +385,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const loading = document.getElementById("rationPopupLoading");
   const answer = document.getElementById("rationPopupAnswer");
   const error = document.getElementById("rationPopupError");
+  const popupTitle = document.getElementById("rationPopupTitle");
 
   if (
     openButtons.length === 0 ||
@@ -450,7 +451,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  function openPopup(topic) {
+ function openPopup(topic) {
+    popupTitle.textContent = topic;
     previousFocus = document.activeElement;
     overlay.classList.add("is-open");
     overlay.setAttribute("aria-hidden", "false");
@@ -503,19 +505,11 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 
-
-
-
   </body>
 
 
-
 <!-- Ration Card Popup -->
-<div
-  id="rationPopupOverlay"
-  class="ration-popup-overlay"
-  aria-hidden="true"
->
+<div id="rationPopupOverlay" class="ration-popup-overlay" aria-hidden="true">
   <section
     class="ration-popup-box"
     role="dialog"
@@ -526,30 +520,21 @@ document.addEventListener("DOMContentLoaded", function () {
       type="button"
       id="closeRationPopup"
       class="ration-popup-close"
-      aria-label="Popup बंद करें"
+      aria-label="Close"
     >×</button>
+
+    <div class="ration-popup-ad-slot" aria-label="विज्ञापन के लिए स्थान"></div>
 
     <h2 id="rationPopupTitle">राशन कार्ड सेवाएँ</h2>
 
-    <div id="rationPopupContent">
-  <p id="rationPopupLoading" hidden>
-    जानकारी लोड हो रही है, कृपया प्रतीक्षा करें...
-  </p>
+    <p id="rationPopupLoading" hidden>
+      जानकारी लोड हो रही है, कृपया प्रतीक्षा करें...
+    </p>
 
-  <div
-    id="rationPopupAnswer"
-    aria-live="polite"
-  ></div>
+    <div id="rationPopupAnswer" aria-live="polite"></div>
 
-  <p
-    id="rationPopupError"
-    role="alert"
-    hidden
-  ></p>
-</div>
-
-
-<div class="ration-popup-ad-slot" aria-label="विज्ञापन के लिए स्थान">
+    <p id="rationPopupError" role="alert" hidden></p>
+  </section>
 </div>
 
 
