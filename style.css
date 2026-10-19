@@ -1,29 +1,34 @@
 
+
 /* ==========================================
-   RASHTRA SETU — MAIN STYLESHEET
-   Clean • Responsive • Reusable
+   1. GLOBAL SETTINGS
 ========================================== */
 
-/* 1. GLOBAL SETTINGS */
-
 :root {
-    --primary: #0b5ed7;
-    --primary-dark: #084ca8;
-    --heading: #123b73;
+    --primary: #125461;
+    --primary-dark: #0d414a;
+    --primary-hover: #0b3941;
+
+    --heading: #125461;
     --accent: #f4b400;
-    --background: #f5f7fa;
+
+    --background: #f5f8f9;
     --surface: #ffffff;
     --text: #222222;
     --muted: #555555;
-    --border: #e5e7eb;
-    --badge: #dc2626;
-    --footer-text: #444444;
+
+    --border: #dce7e9;
+    --badge: #125461;
+
+    --footer-text: #e5f0f2;
+    --button-text: #ffffff;
+
     --radius: 14px;
-    --shadow: 0 3px 12px rgba(0, 0, 0, 0.04);
+    --shadow: 0 3px 12px rgba(18, 84, 97, 0.08);
     --content-width: 1200px;
 }
 
-* {
+*, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -31,7 +36,7 @@
 
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 100px;
+    scroll-padding-top: 110px;
 }
 
 body {
@@ -46,7 +51,9 @@ a {
 }
 
 button,
-input {
+input,
+textarea,
+select {
     font: inherit;
 }
 
@@ -55,60 +62,113 @@ input {
 }
 
 
-/* 2. COMMON HEADER */
+/* ==========================================
+   2. HEADER
+========================================== */
 
 .site-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 25px;
-    padding: 15px 5%;
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
+    gap: 24px;
+    width: 100%;
+    padding: 10px 3%;
+
+    background: var(--primary);
+    border-bottom: 2px solid var(--accent);
+
     position: sticky;
     top: 0;
     z-index: 1000;
 }
 
 .site-brand {
-    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    flex: 0 1 auto;
+    min-width: 0;
 }
 
-.site-logo {
+.site-brand-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    max-width: 100%;
+    line-height: 1;
+
+    transform-origin: center;
+    transition:
+        transform 0.3s ease,
+        filter 0.3s ease;
+}
+
+.site-logo-image {
+    display: block;
+    width: auto;
+    height: 68px;
+    max-width: 100%;
+    object-fit: contain;
+    object-position: left center;
+    flex-shrink: 1;
+
+    transition:
+        transform 0.3s ease,
+        opacity 0.3s ease;
+}
+
+/* Logo Hover */
+
+.site-brand-link:hover {
+    transform: scale(1.04);
+    filter: drop-shadow(0 0 7px rgba(244, 180, 0, 0.55));
+}
+
+.site-brand-link:hover .site-logo-image {
+    opacity: 0.96;
+}
+
+.site-brand-link .site-logo {
     display: inline-block;
-    color: var(--primary);
-    font-size: 27px;
+    color: #ffffff;
+    font-size: 24px;
     font-weight: 700;
     line-height: 1.2;
-    transition: color 0.2s ease, transform 0.2s ease;
+    transition: color 0.25s ease;
 }
 
-.site-logo:hover {
+.site-brand-link:hover .site-logo {
     color: var(--accent);
-    transform: rotate(2deg);
 }
 
 .site-tagline {
-    margin-top: 4px;
-    color: #666666;
-    font-size: 13px;
+    margin-top: 2px;
+    color: var(--footer-text);
+    font-size: 12px;
     line-height: 1.4;
 }
+
+
+/* Header Navigation */
 
 .site-header nav {
     display: flex;
     justify-content: flex-end;
     align-items: center;
     flex-wrap: wrap;
-    gap: 12px 22px;
+    gap: 10px 18px;
+    min-width: 0;
 }
 
 .site-header nav a {
-    color: var(--primary);
+    display: inline-block;
+    padding: 5px 0;
+
+    color: #ffffff;
     font-size: 15px;
     font-weight: 600;
-    padding: 5px 0;
-    transition: color 0.2s ease;
+    white-space: nowrap;
+
+    transition: color 0.25s ease;
 }
 
 .site-header nav a:hover {
@@ -116,9 +176,41 @@ input {
 }
 
 
-/* 3. MAIN CONTENT */
+/* NEW Badges in Navigation */
+
+.new-badge {
+    display: inline-block;
+    margin-left: 5px;
+    padding: 2px 5px;
+
+    border-radius: 4px;
+    background: var(--badge);
+    color: #ffffff;
+
+    font-size: 9px;
+    font-weight: 700;
+    line-height: 1.4;
+    vertical-align: middle;
+
+    animation: newBlink 1s infinite;
+}
+
+
+/* Keyboard Accessibility */
+
+.site-brand-link:focus-visible,
+.site-header nav a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+}
+
+
+/* ==========================================
+   3. MAIN CONTENT
+========================================== */
 
 main {
+    width: 100%;
     max-width: var(--content-width);
     margin: 0 auto;
     padding: 0 20px 50px;
@@ -131,13 +223,15 @@ main > section {
 main > section:first-child {
     padding: 80px 20px;
     text-align: center;
-    background: #eaf2ff;
+
+    background: #eaf2f3;
     border-radius: 18px;
 }
 
 main > section:first-child h1 {
     margin-bottom: 15px;
     color: var(--heading);
+
     font-size: 42px;
     line-height: 1.3;
 }
@@ -145,12 +239,23 @@ main > section:first-child h1 {
 main > section:first-child p {
     max-width: 700px;
     margin: 0 auto 30px;
+
     color: var(--muted);
     font-size: 18px;
 }
 
+main h2 {
+    margin-bottom: 12px;
+}
 
-/* 4. SEARCH FORM */
+main h2 + p {
+    margin-top: 0;
+}
+
+
+/* ==========================================
+   4. SEARCH FORM
+========================================== */
 
 main form {
     width: 100%;
@@ -168,38 +273,114 @@ main form label {
 main form input {
     width: 70%;
     padding: 14px 16px;
-    border: 1px solid #cfd6df;
+
+    border: 1px solid #c7d8dc;
     border-radius: 8px;
     outline: none;
+
+    background: #ffffff;
+    color: var(--text);
 }
 
 main form input:focus {
     border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(18, 84, 97, 0.12);
+}
+
+
+/* ==========================================
+   5. UNIFIED BUTTON STYLES
+========================================== */
+
+main form button,
+.category-action a,
+.scheme-card-action a,
+.contact-button {
+    display: inline-block;
+    padding: 11px 18px;
+
+    background: var(--primary);
+    color: var(--button-text) !important;
+
+    border: 1px solid var(--primary);
+    border-radius: 8px;
+
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+
+    transition:
+        background-color 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.25s ease;
 }
 
 main form button {
     margin-left: 6px;
     padding: 14px 22px;
-    border: none;
-    border-radius: 8px;
-    background: var(--primary);
-    color: #ffffff;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-main form button:hover {
-    background: var(--primary-dark);
 }
 
 
-/* 5. CATEGORY SECTIONS */
+/* Button Hover */
+
+main form button:hover,
+.category-action a:hover,
+.scheme-card-action a:hover,
+.contact-button:hover {
+    background: var(--primary-hover);
+    color: #ffffff !important;
+
+    border-color: var(--accent);
+    box-shadow: 0 4px 12px rgba(18, 84, 97, 0.22);
+
+    transform: translateY(-2px);
+}
+
+
+/* Button Active */
+
+main form button:active,
+.category-action a:active,
+.scheme-card-action a:active,
+.contact-button:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+
+/* Button Keyboard Focus */
+
+main form button:focus-visible,
+.category-action a:focus-visible,
+.scheme-card-action a:focus-visible,
+.contact-button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+
+/* Disabled Buttons */
+
+button:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+
+/* ==========================================
+   6. CATEGORY SECTIONS
+========================================== */
 
 .category-section {
     padding: 30px;
+
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: var(--radius);
+
     box-shadow: var(--shadow);
 }
 
@@ -225,35 +406,23 @@ main form button:hover {
     text-align: left;
 }
 
-.category-action a,
-.scheme-card-action a {
-    display: inline-block;
-    padding: 10px 18px;
-    border-radius: 7px;
-    background: var(--primary);
-    color: #ffffff;
-    font-weight: 600;
-    transition: background 0.2s ease;
-}
 
-.category-action a:hover,
-.scheme-card-action a:hover {
-    background: var(--primary-dark);
-}
-
-
-/* 6. SCHEME CARD */
+/* ==========================================
+   7. SCHEME CARDS
+========================================== */
 
 .scheme-card {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 25px;
+
     width: 100%;
     margin: 20px 0;
     padding: 22px;
-    background: #f8fafc;
-    border: 1px solid #e1e6ed;
+
+    background: #f8fbfb;
+    border: 1px solid var(--border);
     border-radius: 10px;
 }
 
@@ -283,30 +452,24 @@ main form button:hover {
 }
 
 
-/* 7. NEW BADGES */
+/* ==========================================
+   8. NEW BADGES AND ANIMATIONS
+========================================== */
 
-.new-badge,
 .section-new-badge,
 .scheme-new-badge {
     display: inline-block;
-    border-radius: 4px;
+    padding: 3px 6px;
+
     background: var(--badge);
     color: #ffffff;
+
+    border-radius: 4px;
     font-size: 9px;
     font-weight: 700;
     line-height: 1.4;
+
     animation: newBlink 1s infinite;
-}
-
-.new-badge {
-    margin-left: 5px;
-    padding: 2px 5px;
-    vertical-align: middle;
-}
-
-.section-new-badge,
-.scheme-new-badge {
-    padding: 3px 6px;
 }
 
 .scheme-new-badge {
@@ -324,16 +487,20 @@ main form button:hover {
 }
 
 
-/* 8. COMMON FOOTER */
+/* ==========================================
+   9. FOOTER
+========================================== */
 
 .site-footer {
     width: 100%;
     margin-top: 35px;
     padding: 35px 5% 20px;
-    background: var(--surface);
-    color: #333333;
+
+    background: var(--primary);
+    color: #ffffff;
+
     text-align: center;
-    border-top: 1px solid var(--border);
+    border-top: 2px solid var(--accent);
 }
 
 .site-footer .footer-content {
@@ -342,6 +509,7 @@ main form button:hover {
     align-items: center;
     justify-content: center;
     gap: 25px;
+
     max-width: var(--content-width);
     margin: 0 auto;
     text-align: center;
@@ -355,20 +523,18 @@ main form button:hover {
 
 .site-footer .footer-about h2 {
     margin-bottom: 12px;
-    color: var(--primary);
+    color: #ffffff;
     font-size: 24px;
 }
 
 .site-footer .footer-about p {
     max-width: 900px;
     margin: 0 auto;
-    color: var(--muted);
+
+    color: var(--footer-text);
     font-size: 14px;
     line-height: 1.8;
 }
-
-
-/* Footer heading stays above the links */
 
 .site-footer .footer-links {
     display: flex;
@@ -377,6 +543,7 @@ main form button:hover {
     justify-content: center;
     align-items: center;
     gap: 12px 22px;
+
     width: 100%;
     text-align: center;
 }
@@ -384,7 +551,8 @@ main form button:hover {
 .site-footer .footer-links h3 {
     flex-basis: 100%;
     margin-bottom: 3px;
-    color: var(--heading);
+
+    color: #ffffff;
     font-size: 18px;
     text-align: center;
 }
@@ -393,76 +561,125 @@ main form button:hover {
     display: inline-block;
     margin: 0;
     padding: 0;
+
     background: transparent;
-    color: var(--footer-text);
+    color: #ffffff;
+
     font-size: 14px;
     font-weight: 700;
-    color: #123b73;
     white-space: nowrap;
-    transition: color 0.2s ease;
+
+    transition: color 0.25s ease;
 }
 
 .site-footer .footer-links a:hover {
     background: transparent;
-    color: var(--primary);
+    color: var(--accent);
 }
 
 .site-footer .footer-bottom {
     max-width: var(--content-width);
     margin: 25px auto 0;
     padding-top: 18px;
-    border-top: 1px solid var(--border);
+
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
     text-align: center;
 }
 
 .site-footer .footer-bottom p {
     margin: 7px auto;
-    color: #666666;
+    color: var(--footer-text);
+
     font-size: 12px;
     line-height: 1.6;
 }
 
 
-/* 9. MOBILE RESPONSIVE */
+/* ==========================================
+   10. TABLET RESPONSIVE
+========================================== */
+
+@media (min-width: 769px) and (max-width: 1100px) {
+    .site-header {
+        gap: 16px;
+        padding: 10px 2%;
+    }
+
+    .site-logo-image {
+        height: 56px;
+        max-width: 230px;
+    }
+
+    .site-header nav {
+        gap: 8px 12px;
+    }
+
+    .site-header nav a {
+        font-size: 13px;
+    }
+}
+
+
+/* ==========================================
+   11. MOBILE RESPONSIVE
+========================================== */
 
 @media (max-width: 768px) {
+
+    /* Header */
 
     .site-header {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 12px;
-        padding: 15px;
+        gap: 10px;
+        padding: 12px 10px;
         text-align: center;
     }
 
     .site-brand {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         width: 100%;
-        text-align: center;
     }
 
-    .site-logo {
-        font-size: 23px;
-        transform-origin: center;
+    .site-brand-link {
+        justify-content: center;
+        max-width: 100%;
     }
 
-    .site-logo:hover {
-        transform: rotate(-2deg);
+    .site-logo-image {
+        height: 52px;
+        width: auto;
+        max-width: 90vw;
+        object-position: center;
+    }
+
+    .site-brand-link .site-logo {
+        font-size: 21px;
     }
 
     .site-tagline {
         font-size: 12px;
     }
 
+    /* Navigation */
+
     .site-header nav {
         justify-content: center;
+        align-items: center;
         width: 100%;
-        gap: 10px 16px;
+        gap: 8px 14px;
     }
 
     .site-header nav a {
-        font-size: 14px;
+        font-size: 13px;
+        white-space: normal;
+        padding: 3px 0;
     }
+
+    /* Main */
 
     main {
         padding: 0 14px 35px;
@@ -474,12 +691,13 @@ main form button:hover {
 
     main > section:first-child h1 {
         font-size: 30px;
-       
     }
 
     main > section:first-child p {
         font-size: 16px;
     }
+
+    /* Search */
 
     main form input {
         width: 100%;
@@ -489,8 +707,9 @@ main form button:hover {
     main form button {
         width: 100%;
         margin-left: 0;
-        
     }
+
+    /* Categories */
 
     .category-section {
         padding: 22px;
@@ -498,8 +717,9 @@ main form button:hover {
 
     .category-header h2 {
         font-size: 22px;
-       
     }
+
+    /* Scheme Cards */
 
     .scheme-card {
         flex-direction: column;
@@ -513,12 +733,15 @@ main form button:hover {
     }
 
     .scheme-card-action a {
+        width: 100%;
         white-space: normal;
     }
 
     .category-action a {
         max-width: 100%;
     }
+
+    /* Footer */
 
     .site-footer {
         padding: 28px 20px 18px;
@@ -535,10 +758,63 @@ main form button:hover {
     .site-footer .footer-bottom {
         margin-top: 22px;
     }
+
+    /* Paragraphs */
+
+    main p {
+        text-align: justify;
+        text-justify: inter-word;
+        padding-left: 10px;
+        padding-right: 10px;
+
+        overflow-wrap: anywhere;
+        line-height: 1.5;
+
+        margin-top: 6px;
+        margin-bottom: 10px;
+    }
 }
 
 
-/* 10. REDUCED MOTION ACCESSIBILITY */
+/* ==========================================
+   12. SMALL MOBILE DEVICES
+========================================== */
+
+@media screen and (max-width: 600px) {
+
+    main .category-section h2,
+    main .category-section h3,
+    main section h1,
+    main section h2,
+    main section h3 {
+        text-align: center;
+        width: 100%;
+        display: block;
+    }
+
+    main .category-section {
+        text-align: center;
+    }
+
+    main .category-section button,
+    main .category-section a,
+    main .category-section input[type="button"],
+    main .category-section input[type="submit"] {
+        display: block;
+        width: fit-content;
+        max-width: 100%;
+        margin: 12px auto;
+    }
+
+    .scheme-card-action a {
+        width: 100%;
+    }
+}
+
+
+/* ==========================================
+   13. ACCESSIBILITY
+========================================== */
 
 @media (prefers-reduced-motion: reduce) {
     html {
@@ -552,64 +828,653 @@ main form button:hover {
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
     }
+
+    .site-brand-link:hover,
+    .site-brand-link:hover .site-logo-image,
+    main form button:hover,
+    .category-action a:hover,
+    .scheme-card-action a:hover,
+    .contact-button:hover {
+        transform: none;
+    }
 }
 
 
+/* ==========================================
+   RASHTRA SETU — SHARED INFORMATION PAGE DESIGN
+   About • Contact • Privacy • Disclaimer
+========================================== */
 
-
-/* Force Center Headings on Mobile */
-@media screen and (max-width: 600px) {
-  main .category-section h2,
-  main .category-section h3,
-  main section h1,
-  main section h2,
-  main section h3 {
-    text-align: center !important;
+/* Shared page width and spacing */
+.about-page,
+.contact-page,
+.policy-page {
     width: 100%;
-    display: block;
-  }
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 30px 20px 60px;
+    color: var(--text);
+    overflow-wrap: anywhere;
 }
 
-/* Mobile: Force Buttons to Center */
-@media screen and (max-width: 600px) {
-  main .category-section {
-    text-align: center !important;
-  }
-
-  main .category-section button,
-  main .category-section a,
-  main .category-section input[type="button"],
-  main .category-section input[type="submit"] {
-    display: block;
-    width: fit-content;
-    margin: 12px auto !important;
-  }
+/* Shared hero banner */
+.about-hero,
+.contact-hero,
+.policy-hero {
+    margin: 15px 0 30px;
+    padding: 48px 30px;
+    background: linear-gradient(
+        135deg,
+        var(--primary),
+        var(--primary-dark)
+    );
+    border-radius: 18px;
+    border-bottom: 4px solid var(--accent);
+    text-align: center;
+    color: var(--button-text);
 }
 
+.about-hero h1,
+.contact-hero h1,
+.policy-hero h1 {
+    margin-bottom: 15px;
+    color: #ffffff;
+    font-size: 36px;
+    line-height: 1.35;
+}
 
+.about-hero p,
+.contact-hero p,
+.policy-hero p {
+    max-width: 700px;
+    margin: 0 auto 14px;
+    color: var(--footer-text);
+    font-size: 16px;
+    line-height: 1.8;
+}
 
-/* Contact Us Email Button */
+.about-hero p:last-child,
+.contact-hero p:last-child,
+.policy-hero p:last-child {
+    margin-bottom: 0;
+}
+
+/* Shared white content cards */
+.about-section,
+.contact-section,
+.policy-section {
+    margin: 20px 0;
+    padding: 28px 30px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+}
+
+.about-section h2,
+.contact-section h2,
+.policy-section h2 {
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    color: var(--heading);
+    font-size: 22px;
+    line-height: 1.45;
+    border-bottom: 1px solid #e5edef;
+}
+
+.about-section h3,
+.contact-section h3 {
+    margin-bottom: 10px;
+    color: var(--heading);
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.about-section p,
+.contact-section p,
+.policy-section p {
+    margin: 12px 0;
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.9;
+    overflow-wrap: anywhere;
+}
+
+.about-section ul,
+.contact-section ul,
+.policy-section ul,
+.about-section ol,
+.contact-section ol,
+.policy-section ol {
+    margin: 14px 0;
+    padding-left: 24px;
+}
+
+.about-section li,
+.contact-section li,
+.policy-section li {
+    margin: 9px 0;
+    padding-left: 4px;
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.about-section li::marker,
+.contact-section li::marker,
+.policy-section li::marker {
+    color: var(--primary);
+}
+
+/* Shared information cards */
+.about-grid,
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.about-card,
+.contact-card {
+    min-width: 0;
+    padding: 22px;
+    background: #f8fbfc;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.about-card p,
+.contact-card p {
+    margin-bottom: 0;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+@media (hover: hover) {
+    .about-card:hover,
+    .contact-card:hover {
+        border-color: var(--primary);
+        box-shadow: 0 4px 14px rgba(18, 84, 97, 0.08);
+    }
+}
+
+/* Shared notice panel */
+.contact-notice {
+    margin: 25px 0 20px;
+    padding: 22px 25px;
+    background: #eaf2f3;
+    border-left: 4px solid var(--primary);
+    border-radius: 8px;
+}
+
+.contact-notice h2 {
+    margin-bottom: 12px;
+    color: var(--heading);
+    font-size: 21px;
+}
+
+.contact-notice p {
+    margin: 10px 0;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+/* Links inside information pages */
+.about-section a:not(.about-button),
+.contact-section a:not(.contact-button),
+.policy-section a:not(.contact-button) {
+    color: var(--primary);
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.about-section a:hover,
+.contact-section a:hover,
+.policy-section a:hover {
+    color: var(--primary-hover);
+}
+
+/* Shared page buttons */
+.about-button,
 .contact-button {
-  display: inline-block;
-  padding: 6px 18px;
-  background: #0b5ed7;
-  color: #fff !important;
-  font-size: 14px;
-  font-weight: 700;
-  text-decoration: none;
-  border-radius: 6px;
-  text-align: center;
-  transition: background 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 10px;
+    padding: 12px 22px;
+    background: var(--primary);
+    border: 1px solid var(--primary);
+    border-radius: 8px;
+    color: #ffffff !important;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.5;
+    text-decoration: none !important;
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
+.about-button:hover,
 .contact-button:hover {
-  background: #123b73;
+    background: var(--primary-hover);
+    border-color: var(--accent);
+    color: #ffffff !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(18, 84, 97, 0.18);
+}
+
+.about-button:focus-visible,
+.contact-button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+}
+
+/* Tablet layout */
+@media (max-width: 768px) {
+    .about-page,
+    .contact-page,
+    .policy-page {
+        padding: 22px 14px 40px;
+    }
+
+    .about-hero,
+    .contact-hero,
+    .policy-hero {
+        padding: 38px 22px;
+        border-radius: 14px;
+    }
+
+    .about-hero h1,
+    .contact-hero h1,
+    .policy-hero h1 {
+        font-size: 30px;
+    }
+
+    .about-hero p,
+    .contact-hero p,
+    .policy-hero p {
+        font-size: 15px;
+    }
+
+    .about-section,
+    .contact-section,
+    .policy-section {
+        margin: 16px 0;
+        padding: 23px 20px;
+    }
+
+    .about-section h2,
+    .contact-section h2,
+    .policy-section h2 {
+        font-size: 20px;
+    }
+
+    .about-grid,
+    .contact-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+    }
+
+    .about-card,
+    .contact-card {
+        padding: 18px;
+    }
+}
+
+/* Small mobile layout */
+@media (max-width: 480px) {
+    .about-page,
+    .contact-page,
+    .policy-page {
+        padding: 16px 12px 30px;
+    }
+
+    .about-hero,
+    .contact-hero,
+    .policy-hero {
+        padding: 32px 16px;
+    }
+
+    .about-hero h1,
+    .contact-hero h1,
+    .policy-hero h1 {
+        font-size: 26px;
+    }
+
+    .about-section,
+    .contact-section,
+    .policy-section {
+        padding: 20px 16px;
+    }
+
+    .about-section h2,
+    .contact-section h2,
+    .policy-section h2 {
+        font-size: 19px;
+    }
+
+    .about-section p,
+    .contact-section p,
+    .policy-section p,
+    .about-section li,
+    .contact-section li,
+    .policy-section li {
+        font-size: 14px;
+        line-height: 1.8;
+    }
+
+    .about-grid,
+    .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .contact-notice {
+        padding: 18px;
+    }
+
+    .about-button,
+    .contact-button {
+        max-width: 100%;
+    }
+}
+
+/* Respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+    .about-card,
+    .contact-card,
+    .about-button,
+    .contact-button {
+        transition: none;
+    }
+
+    .about-button:hover,
+    .contact-button:hover {
+        transform: none;
+    }
+}
+
+
+/* ==========================================
+   RASHTRA SETU — DIGITAL SEVA SERVICE CARDS
+   Isolated styles: digital-seva.html only
+========================================== */
+
+.digital-service-category {
+    margin: 22px 0;
+    padding: 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.digital-service-category h2 {
+    margin: 0 0 20px;
+    padding-bottom: 12px;
+    color: var(--heading);
+    font-size: 23px;
+    line-height: 1.5;
+    border-bottom: 2px solid var(--border);
+}
+
+.digital-service-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.digital-service-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 0;
+    padding: 20px;
+    background: #f8fbfc;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.digital-service-card h3 {
+    margin: 0 0 10px;
+    color: var(--heading);
+    font-size: 17px;
+    line-height: 1.5;
+}
+
+.digital-service-card p {
+    margin: 0 0 16px;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.digital-service-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: auto;
+    padding: 9px 13px;
+    background: var(--primary);
+    border: 1px solid var(--primary);
+    border-radius: 7px;
+    color: #ffffff !important;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.5;
+    text-decoration: none !important;
+}
+
+.digital-service-link:hover {
+    background: var(--primary-hover);
+    border-color: var(--accent);
+}
+
+.digital-service-link:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+@media (hover: hover) {
+    .digital-service-card:hover {
+        border-color: var(--primary);
+        box-shadow: 0 4px 14px rgba(18, 84, 97, 0.08);
+    }
+}
+
+@media (max-width: 900px) {
+    .digital-service-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .digital-service-category {
+        margin: 16px 0;
+        padding: 20px 16px;
+    }
+
+    .digital-service-category h2 {
+        font-size: 20px;
+    }
+
+    .digital-service-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 12px;
+    }
+
+    .digital-service-card {
+        padding: 18px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .digital-service-card {
+        transition: none;
+    }
 }
 
 
 
-/* RashtraSetu: Justify paragraphs on desktop and mobile */
-main p {
-  text-align: justify;
-  text-justify: inter-word;
+
+
+
+
+
+
+
+
+
+
+/* Ration Card State Dropdown - Center Alignment */
+#state-ration-services .digital-service-category {
+  max-width: 420px;
+  margin: 24px auto;
+  padding: 24px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+#state-ration-services #rationState {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  margin: 14px auto;
+  padding: 12px 14px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+#state-ration-services #rationStateMessage {
+  text-align: center;
+  margin: 14px 0;
+}
+
+#state-ration-services #rationStatePortal {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  margin: 16px auto 0;
+}
+
+#state-ration-services #rationStatePortal[hidden] {
+  display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Rashtra Setu - Ration Card Popup */
+.ration-popup-trigger {
+  display: flex;
+  justify-content: center;
+  margin: 24px auto;
+}
+
+#openRationPopup {
+  cursor: pointer;
+  border: none;
+  font: inherit;
+}
+
+.ration-popup-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.65);
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.ration-popup-overlay.is-open {
+  display: flex;
+}
+
+.ration-popup-box {
+  position: relative;
+  width: 100%;
+  max-width: 760px;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 32px 24px;
+  box-sizing: border-box;
+  background: #ffffff;
+  color: #12345A;
+  border-radius: 16px;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+}
+
+.ration-popup-box h2 {
+  margin: 0 40px 16px 0;
+  text-align: center;
+  color: #12345A;
+}
+
+.ration-popup-box p {
+  line-height: 1.7;
+}
+
+.ration-popup-close {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: #f1f3f5;
+  color: #12345A;
+  font-size: 30px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.ration-popup-close:hover {
+  background: #e2e8f0;
+}
+
+.ration-popup-box a:focus-visible,
+.ration-popup-close:focus-visible,
+#openRationPopup:focus-visible {
+  outline: 3px solid #f4b400;
+  outline-offset: 3px;
+}
+
+body.ration-popup-active {
+  overflow: hidden;
+}
+
+@media (max-width: 600px) {
+  .ration-popup-overlay {
+    padding: 12px;
+  }
+
+  .ration-popup-box {
+    max-height: 90vh;
+    padding: 28px 16px 20px;
+    border-radius: 12px;
+  }
 }
