@@ -45,29 +45,45 @@ const prompt = `
 10. केवल उपयोगकर्ता के विषय का जवाब दें; अतिरिक्त सवालों की सूची न बनाएँ।
 `;
 
-    const response = await fetch(
-      "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent?key=" +
-        encodeURIComponent(apiKey),
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          contents: [
-            {
-              parts: [{ text: prompt }]
-            }
-          ],
-          generationConfig: {
-            temperature: 0.3,
-            maxOutputTokens: 1000
-          }
-        })
-      }
-    );
+  
+let response;
+let data;
 
-    const data = await response.json();
+for (let attempt = 0; attempt < 2; attempt++) {
+  response = await fetch(
+    "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent?key=" +
+      encodeURIComponent(apiKey),
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        contents: [
+          {
+            parts: [{ text: prompt }]
+          }
+        ],
+        generationConfig: {
+          temperature: 0.3,
+          maxOutputTokens: 1800
+        }
+      })
+    }
+  );
+
+  data = await response.json();
+
+  if (
+    response.ok ||
+    ![429, 500, 502, 503, 504].includes(response.status) ||
+    attempt === 1
+  ) {
+    break;
+  }
+
+  await new Promise(resolve => setTimeout(resolve, 1200));
+}
 
     if (!response.ok) {
       console.error(
