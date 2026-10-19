@@ -1397,12 +1397,13 @@ button:disabled {
   font: inherit;
 }
 
+
 .ration-popup-overlay {
   display: none;
   position: fixed;
   inset: 0;
   z-index: 9999;
-  padding: 20px;
+  padding: 16px;
   background: rgba(0, 0, 0, 0.65);
   align-items: center;
   justify-content: center;
@@ -1416,19 +1417,19 @@ button:disabled {
 .ration-popup-box {
   position: relative;
   width: 100%;
-  max-width: 760px;
-  max-height: 85vh;
+  max-width: 680px;
+  max-height: 82vh;
   overflow-y: auto;
-  padding: 32px 24px;
+  padding: 28px 22px 20px;
   box-sizing: border-box;
   background: #ffffff;
   color: #12345A;
-  border-radius: 16px;
+  border-radius: 14px;
   box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
 }
 
 .ration-popup-box h2 {
-  margin: 0 40px 16px 0;
+  margin: 0 40px 12px 0;
   text-align: center;
   color: #12345A;
 }
@@ -1437,23 +1438,33 @@ button:disabled {
   line-height: 1.7;
 }
 
+#rationPopupAnswer {
+  max-height: 42vh;
+  overflow-y: auto;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+  line-height: 1.7;
+  padding-right: 6px;
+}
+
+.ration-popup-ad-slot {
+  min-height: 90px;
+  margin-top: 16px;
+  padding: 8px;
+  box-sizing: border-box;
+  text-align: center;
+  border-top: 1px solid #e2e8f0;
+}
+
 .ration-popup-close {
   position: absolute;
   top: 10px;
-  right: 14px;
-  width: 40px;
-  height: 40px;
+  right: 12px;
   border: none;
-  border-radius: 50%;
-  background: #f1f3f5;
+  background: transparent;
   color: #12345A;
-  font-size: 30px;
-  line-height: 1;
+  font-size: 28px;
   cursor: pointer;
-}
-
-.ration-popup-close:hover {
-  background: #e2e8f0;
 }
 
 .ration-popup-box a:focus-visible,
@@ -1469,8 +1480,20 @@ body.ration-popup-active {
 
 @media (max-width: 600px) {
   .ration-popup-overlay {
-    padding: 12px;
+    padding: 10px;
   }
+
+  .ration-popup-box {
+    max-height: 86vh;
+    padding: 26px 14px 16px;
+    border-radius: 12px;
+  }
+
+  #rationPopupAnswer {
+    max-height: 45vh;
+  }
+}
+
 
   .ration-popup-box {
     max-height: 90vh;
