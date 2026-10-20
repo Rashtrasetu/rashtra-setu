@@ -1322,17 +1322,6 @@ button:disabled {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
 /* Ration Card State Dropdown - Center Alignment */
 #state-ration-services .digital-service-category {
   max-width: 420px;
@@ -1369,21 +1358,7 @@ button:disabled {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* Rashtra Setu - Ration Card Popup */
 /* Rashtra Setu - Ration Card Popup */
 .ration-popup-trigger {
   display: flex;
@@ -1397,7 +1372,7 @@ button:disabled {
   font: inherit;
 }
 
-
+/* Popup background */
 .ration-popup-overlay {
   display: none;
   position: fixed;
@@ -1414,13 +1389,14 @@ button:disabled {
   display: flex;
 }
 
+/* Larger popup */
 .ration-popup-box {
   position: relative;
   width: 100%;
-  max-width: 680px;
-  max-height: 82vh;
+  max-width: 760px;
+  max-height: 90vh;
   overflow-y: auto;
-  padding: 28px 22px 20px;
+  padding: 24px 24px 22px;
   box-sizing: border-box;
   background: #ffffff;
   color: #12345A;
@@ -1429,7 +1405,7 @@ button:disabled {
 }
 
 .ration-popup-box h2 {
-  margin: 0 40px 12px 0;
+  margin: 0 40px 16px 0;
   text-align: center;
   color: #12345A;
 }
@@ -1438,28 +1414,40 @@ button:disabled {
   line-height: 1.7;
 }
 
+/* Information area */
 #rationPopupAnswer {
-  max-height: 42vh;
+  max-height: 40vh;
   overflow-y: auto;
   overflow-wrap: anywhere;
   white-space: pre-wrap;
-  line-height: 1.7;
-  padding-right: 6px;
+  line-height: 1.8;
+  padding: 4px 6px;
 }
 
+/* Top and bottom advertisement spaces */
+/* Top ad space */
 .ration-popup-ad-slot {
-  min-height: 90px;
-  margin-top: 16px;
-  padding: 8px;
+  min-height: 250px;
+  margin: 16px 0 24px;
+  padding: 12px;
   box-sizing: border-box;
   text-align: center;
   border-top: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
 }
 
+/* Bottom ad space */
+.ration-popup-ad-bottom {
+  min-height: 300px;
+  margin: 24px 0 0;
+}
+
+/* Close button */
 .ration-popup-close {
   position: absolute;
-  top: 10px;
+  top: 8px;
   right: 12px;
+  z-index: 1;
   border: none;
   background: transparent;
   color: #12345A;
@@ -1478,26 +1466,30 @@ body.ration-popup-active {
   overflow: hidden;
 }
 
+/* Mobile layout */
 @media (max-width: 600px) {
   .ration-popup-overlay {
     padding: 10px;
   }
 
   .ration-popup-box {
-    max-height: 86vh;
-    padding: 26px 14px 16px;
+    max-height: 92vh;
+    padding: 24px 14px 18px;
     border-radius: 12px;
   }
 
   #rationPopupAnswer {
-    max-height: 45vh;
+    max-height: 35vh;
   }
-}
 
+  .ration-popup-ad-slot {
+    min-height: 130px;
+    margin: 12px 0 16px;
+    padding: 10px 4px;
+  }
 
-  .ration-popup-box {
-    max-height: 90vh;
-    padding: 28px 16px 20px;
-    border-radius: 12px;
+  .ration-popup-ad-bottom {
+    min-height: 150px;
+    margin-top: 18px;
   }
 }
