@@ -1427,7 +1427,7 @@ button:disabled {
 /* Top and bottom advertisement spaces */
 /* Top ad space */
 .ration-popup-ad-slot {
-  min-height: 250px;
+  min-height: 200px;
   margin: 16px 0 24px;
   padding: 12px;
   box-sizing: border-box;
@@ -1438,7 +1438,7 @@ button:disabled {
 
 /* Bottom ad space */
 .ration-popup-ad-bottom {
-  min-height: 300px;
+  min-height: 270px;
   margin: 24px 0 0;
 }
 
