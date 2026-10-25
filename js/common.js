@@ -22,8 +22,30 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
     }
 
+    // मौजूदा Header और Footer लोड करने का सिस्टम
     await Promise.all([
         loadComponent("#site-header", "/components/header.html"),
         loadComponent("#site-footer", "/components/footer.html")
     ]);
+
+    // Common Popup Controller लोड करें
+    function loadCommonPopupScript() {
+        if (document.querySelector('script[data-rashtra-common-popup]')) {
+            return;
+        }
+
+        const script = document.createElement("script");
+        script.src = "/js/common-popup.js";
+        script.dataset.rashtraCommonPopup = "true";
+
+        script.onerror = function () {
+            console.error(
+                "Rashtra Setu: Common Popup script load नहीं हो पाया।"
+            );
+        };
+
+        document.body.appendChild(script);
+    }
+
+    loadCommonPopupScript();
 });

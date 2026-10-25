@@ -1,0 +1,148 @@
+
+/* =========================================
+   Rashtra Setu - Common Popup System
+   Shared popup styles
+========================================= */
+
+.common-popup-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  padding: 16px;
+  box-sizing: border-box;
+  background: rgba(0, 0, 0, 0.65);
+  align-items: center;
+  justify-content: center;
+}
+
+.common-popup-overlay.is-open {
+  display: flex;
+}
+
+.common-popup-box {
+  position: relative;
+  width: 100%;
+  max-width: 760px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-sizing: border-box;
+  padding: 24px;
+  background: #ffffff;
+  color: #12345A;
+  border-radius: 14px;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+}
+
+.common-popup-close {
+  position: sticky;
+  top: 0;
+  float: right;
+  z-index: 2;
+  width: 36px;
+  height: 36px;
+  margin: -10px -10px 0 8px;
+  border: none;
+  border-radius: 50%;
+  background: #f1f5f9;
+  color: #12345A;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.common-popup-close:hover {
+  background: #e2e8f0;
+}
+
+.common-popup-box h2 {
+  clear: both;
+  margin: 12px 0 16px;
+  color: #12345A;
+  font-size: 24px;
+  line-height: 1.4;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.common-popup-content {
+  max-height: 40vh;
+  overflow-y: auto;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+  padding: 4px 6px;
+  color: #333333;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.common-popup-content a {
+  color: #0b5ed7;
+  text-decoration: underline;
+  overflow-wrap: anywhere;
+}
+
+.common-popup-content ul,
+.common-popup-content ol {
+  padding-left: 24px;
+}
+
+.common-popup-ad {
+  display: block;
+  width: 100%;
+  min-height: 200px;
+  margin: 16px 0 24px;
+  padding: 12px;
+  box-sizing: border-box;
+  text-align: center;
+  border-top: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.common-popup-ad-bottom {
+  min-height: 200px;
+  margin: 24px 0 0;
+}
+
+.common-popup-close:focus-visible,
+.common-popup-content a:focus-visible {
+  outline: 3px solid #f4b400;
+  outline-offset: 3px;
+}
+
+body.common-popup-active {
+  overflow: hidden;
+}
+
+/* Mobile responsive design */
+@media (max-width: 600px) {
+  .common-popup-overlay {
+    padding: 10px;
+  }
+
+  .common-popup-box {
+    max-height: 92vh;
+    padding: 18px 14px;
+    border-radius: 12px;
+  }
+
+  .common-popup-box h2 {
+    font-size: 21px;
+  }
+
+  .common-popup-content {
+    max-height: 35vh;
+    font-size: 15px;
+    line-height: 1.75;
+  }
+
+  .common-popup-ad {
+    min-height: 200px;
+    margin: 14px 0 20px;
+  }
+
+  .common-popup-ad-bottom {
+    min-height: 250px;
+    margin-top: 20px;
+  }
+}

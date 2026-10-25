@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>सरकारी योजनाएँ | Rashtra Setu</title>
+
+  <meta name="description" content="Rashtra Setu पर केंद्र सरकार और राज्य सरकार की योजनाओं, पात्रता, लाभ और आधिकारिक आवेदन लिंक की जानकारी प्राप्त करें।">
+
+  <link rel="canonical" href="https://rashtra-setu.vercel.app/sarkari-yojnaye.html">
+
+  <link rel="stylesheet" href="/style.css">
+
+  <script src="/js/common.js" defer></script>
+</head>
+<body>
+
+  <!-- Shared Header -->
+  <div id="site-header">
+
+  </div>
+
+  <main class="policy-page">
+
+    <!-- Hero Section -->
+    <section class="policy-hero">
+      <h1>सरकारी योजनाएँ</h1>
+      <p>
+        केंद्र और राज्य सरकार की योजनाओं की जानकारी,
+        पात्रता और आधिकारिक आवेदन लिंक एक ही जगह पाएँ।
+      </p>
+    </section>
+
+    <!-- Yojana Selector Section -->
+    <section class="yojana-selector-section">
+
+  <div class="yojana-selector-grid">
+
+    <!-- केंद्र सरकार -->
+    <div class="yojana-selector-card central-card">
+      <div class="yojana-card-heading">
+        <span class="yojana-icon" aria-hidden="true">🏛️</span>
+        <h2>केंद्र सरकार की योजनाएँ</h2>
+      </div>
+
+      <label for="centralYojanaSelect">योजना चुनें</label>
+      <select id="centralYojanaSelect">
+        <option value="">-- केंद्र की योजना चुनें --</option>
+        <option value="pm-kisan">प्रधानमंत्री किसान सम्मान निधि</option>
+        <option value="pmay">प्रधानमंत्री आवास योजना (शहरी)</option>
+        <option value="ayushman">आयुष्मान भारत</option>
+        <option value="myscheme">अन्य सरकारी योजनाएँ</option>
+      </select>
+    </div>
+
+    <!-- राज्य सरकार -->
+    <div class="yojana-selector-card state-card">
+      <div class="yojana-card-heading">
+        <span class="yojana-icon" aria-hidden="true">🗺️</span>
+        <h2>राज्य सरकार की योजनाएँ</h2>
+      </div>
+
+      <label for="stateSelect">राज्य या केंद्रशासित प्रदेश चुनें</label>
+      <select id="stateSelect">
+        <option value="">-- अपना राज्य चुनें --</option>
+        <option value="andhra-pradesh">आंध्र प्रदेश</option>
+        <option value="arunachal-pradesh">अरुणाचल प्रदेश</option>
+        <option value="assam">असम</option>
+        <option value="bihar">बिहार</option>
+        <option value="chhattisgarh">छत्तीसगढ़</option>
+        <option value="goa">गोवा</option>
+        <option value="gujarat">गुजरात</option>
+        <option value="haryana">हरियाणा</option>
+        <option value="himachal-pradesh">हिमाचल प्रदेश</option>
+        <option value="jharkhand">झारखंड</option>
+        <option value="karnataka">कर्नाटक</option>
+        <option value="kerala">केरल</option>
+        <option value="madhya-pradesh">मध्य प्रदेश</option>
+        <option value="maharashtra">महाराष्ट्र</option>
+        <option value="manipur">मणिपुर</option>
+        <option value="meghalaya">मेघालय</option>
+        <option value="mizoram">मिजोरम</option>
+        <option value="nagaland">नागालैंड</option>
+        <option value="odisha">ओडिशा</option>
+        <option value="punjab">पंजाब</option>
+        <option value="rajasthan">राजस्थान</option>
+        <option value="sikkim">सिक्किम</option>
+        <option value="tamil-nadu">तमिलनाडु</option>
+        <option value="telangana">तेलंगाना</option>
+        <option value="tripura">त्रिपुरा</option>
+        <option value="uttar-pradesh">उत्तर प्रदेश</option>
+        <option value="uttarakhand">उत्तराखंड</option>
+        <option value="west-bengal">पश्चिम बंगाल</option>
+        <option value="andaman-nicobar">अंडमान और निकोबार द्वीपसमूह</option>
+        <option value="chandigarh">चंडीगढ़</option>
+        <option value="dadra-nagar-haveli-daman-diu">दादरा और नगर हवेली तथा दमन और दीव</option>
+        <option value="delhi">दिल्ली</option>
+        <option value="jammu-kashmir">जम्मू और कश्मीर</option>
+        <option value="ladakh">लद्दाख</option>
+        <option value="lakshadweep">लक्षद्वीप</option>
+        <option value="puducherry">पुडुचेरी</option>
+      </select>
+    </div>
+
+  </div>
+
+  <div id="yojanaResults" aria-live="polite"></div>
+
+</section>
+
+  </main>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const centralYojanaSelect = document.getElementById("centralYojanaSelect");
+
+    if (centralYojanaSelect) {
+        centralYojanaSelect.addEventListener("change", function () {
+            const selectedYojana = this.value;
+
+              //प्रधान मंत्री किसान सम्मान निधि
+    if (selectedYojana === "pm-kisan") {
+               window.open("/pm-kisan.html", "_blank", "noopener,noreferrer");
+            }
+              // प्रधानमंत्री आवास योजना (शहरी)
+    if (selectedYojana === "pmay") {
+        window.open("/pm-awas-yojana-urban.html", "_blank", "noopener,noreferrer");
+    }
+
+               // आयुष्मान भारत योजना
+    if (selectedYojana === "ayushman") {
+        window.open("/ayushman-yojana.html", "_blank", "noopener,noreferrer");
+    }
+
+    });
+    }
+});
+</script>
+
+  <!-- Shared Footer -->
+  <div id="site-footer"></div>
+
+</body>
+</html>
+
+  </main>
+
+  <!-- Shared Footer -->
+  <div id="site-footer"></div>
+
+</body>
+</html>
