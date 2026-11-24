@@ -124,43 +124,54 @@
 
   </main>
 
+
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     const centralYojanaSelect = document.getElementById("centralYojanaSelect");
+    const stateSelect = document.getElementById("stateSelect");
 
+    // केंद्र सरकार की योजनाएँ
     if (centralYojanaSelect) {
         centralYojanaSelect.addEventListener("change", function () {
             const selectedYojana = this.value;
 
-              //प्रधान मंत्री किसान सम्मान निधि
-    if (selectedYojana === "pm-kisan") {
-               window.open("/pm-kisan.html", "_blank", "noopener,noreferrer");
+            const centralYojanaLinks = {
+                "pm-kisan": "/pm-kisan.html",
+                "pmay": "/pm-awas-yojana-urban.html",
+                "ayushman": "/ayushman-yojana.html",
+                "myscheme": "https://www.myscheme.gov.in/"
+            };
+
+            const targetUrl = centralYojanaLinks[selectedYojana];
+
+            if (targetUrl) {
+                window.open(targetUrl, "_blank", "noopener,noreferrer");
             }
-              // प्रधानमंत्री आवास योजना (शहरी)
-    if (selectedYojana === "pmay") {
-        window.open("/pm-awas-yojana-urban.html", "_blank", "noopener,noreferrer");
+        });
     }
 
-               // आयुष्मान भारत योजना
-    if (selectedYojana === "ayushman") {
-        window.open("/ayushman-yojana.html", "_blank", "noopener,noreferrer");
-    }
+    // राज्य और केंद्रशासित प्रदेश की योजनाएँ
+    if (stateSelect) {
+        stateSelect.addEventListener("change", function () {
+            const selectedState = this.value;
 
-    });
+            const stateYojanaLinks = {
+                "delhi": "/delhi-yojnaye.html"
+            };
+
+            const targetUrl = stateYojanaLinks[selectedState];
+
+            if (targetUrl) {
+                window.open(targetUrl, "_blank", "noopener,noreferrer");
+            }
+        });
     }
 });
 </script>
 
-  <!-- Shared Footer -->
-  <div id="site-footer"></div>
+<!-- Shared Footer -->
+<div id="site-footer"></div>
 
 </body>
 </html>
 
-  </main>
-
-  <!-- Shared Footer -->
-  <div id="site-footer"></div>
-
-</body>
-</html>
