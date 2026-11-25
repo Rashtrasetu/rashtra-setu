@@ -1724,3 +1724,40 @@ button:disabled {
         object-fit: contain;
     }
 }
+/* =========================================
+   DELHI ATAL CANTEEN YOJANA HERO BANNER
+   Image Ratio: 2172 x 724 (3:1)
+   ========================================= */
+
+.policy-hero.policy-hero-banner.delhi-atal-canteen-hero {
+    width: 100%;
+    aspect-ratio: 2172 / 724;
+    min-height: 0;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 18px;
+    display: block;
+}
+
+.policy-hero-banner .delhi-atal-canteen-hero-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+
+@media (max-width: 600px) {
+    .policy-hero.policy-hero-banner.delhi-atal-canteen-hero {
+        aspect-ratio: auto;
+        height: auto;
+        border-radius: 14px;
+    }
+
+    .policy-hero-banner .delhi-atal-canteen-hero-image {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
+}
+
