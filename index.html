@@ -83,26 +83,52 @@
                 की जानकारी एक ही जगह पर।
             </p>
 
-            <!-------- SEARCH -------->
+                    <!-------- SEARCH -------->
 
-            <form role="search">
+            <form
+                class="home-search"
+                id="home-search-form"
+                role="search"
+                autocomplete="off"
+            >
 
                 <label for="search">
                     जानकारी खोजें
                 </label>
 
-                <input
-                    type="search"
-                    id="search"
-                    name="search"
-                    placeholder="योजना, फॉर्म, नौकरी आदि खोजें..."
-                >
+                <div class="home-search-controls">
 
-                <button type="submit">
-                    खोजें
-                </button>
+                    <input
+                        type="search"
+                        id="search"
+                        name="search"
+                        placeholder="योजना, फॉर्म, नौकरी आदि खोजें..."
+                        aria-label="योजना या सेवा खोजें"
+                        aria-controls="search-suggestions search-results"
+                    >
+
+                    <button type="submit">
+                        खोजें
+                    </button>
+
+                </div>
+
+                <div
+                    id="search-suggestions"
+                    class="search-suggestions"
+                    role="listbox"
+                    aria-label="खोज सुझाव"
+                    hidden
+                ></div>
 
             </form>
+
+            <section
+                id="search-results"
+                class="search-results"
+                aria-live="polite"
+                hidden
+            ></section>
 
         </section>
 
@@ -290,6 +316,7 @@
 
    <div id="site-footer"></div>
    <script src="/js/common.js" defer></script>
+   <script src="/js/search.js" defer></script>
 
 </body>
 </html>
