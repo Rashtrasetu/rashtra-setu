@@ -129,6 +129,7 @@
 
     let currentMatches = [];
     let selectedIndex = -1;
+    let selectedPage = null;
 
     function normalize(value) {
         return value
@@ -219,6 +220,7 @@
     event.preventDefault();
 
     selectedIndex = index;
+    selectedPage = page;
     input.value = page.title;
 
     suggestions.hidden = true;
@@ -299,6 +301,7 @@
 
     if (selectedIndex >= 0) {
         input.value = currentMatches[selectedIndex].title;
+        selectedPage = currentMatches[selectedIndex];
 
         suggestions.hidden = true;
         input.setAttribute("aria-expanded", "false");
@@ -335,10 +338,10 @@
         const matches = findMatches(query);
 
         // चुना हुआ सुझाव होने पर Search बटन से वही पेज खोलें।
-        if (selectedIndex >= 0 && currentMatches[selectedIndex]) {
-            window.location.href = currentMatches[selectedIndex].url;
-            return;
-        }
+       if (selectedPage && input.value.trim() === selectedPage.title) {
+    window.location.href = selectedPage.url;
+    return;
+}
 
         // सुझाव चुने बिना Search करने पर सभी परिणाम दिखाएँ।
         hideSuggestions();
